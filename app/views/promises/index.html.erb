@@ -1,0 +1,44 @@
+<main class="container">
+  <section class="columns">
+    <div class="column col-10 col-mx-auto">
+      <h1>All Promises</h1>
+    </div>
+    <div class="column col-10 col-mx-auto">
+      <h6><%= link_to 'Add New Promise', new_promise_path %></h6>
+    </div>
+    <div class="column col-10 col-mx-auto">
+      <h5>Total Promises: <%= @promises.length %></h5>
+      <h5>In Progress: <%= @in_progress %></h5>
+      <h5>Abandoned: <%= @abandoned %></h5>
+      <h5>Done: <%= @done %></h5>
+    </div>
+  </section>
+  <section class="columns">
+    <div class="column col-10 col-mx-auto">
+      <table class="table table-striped table-hover">
+        <thead>
+          <th>Promisee</th>
+          <th>Promise</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Status</th>
+          <th>Update</th>
+          <th>Destroy</th>
+        </thead>
+        <tbody>
+          <% @promises.each do |promise| %>
+            <tr id="promise-<%= promise.id %>">
+              <td><%= promise.promisee %></td>
+              <td><%= link_to promise.body, promise_path(promise) %></td>
+              <td><%= promise.promise_start_date %></td>
+              <td><%= promise.promise_end_date %></td>
+              <td><%= promise.status %></td>
+              <td><%= link_to 'Edit', edit_promise_path(promise), class: 'btn btn-primary btn-sm' %></td>
+              <td><%= link_to 'Remove', promise_path(promise), class: 'btn btn-sm btn-error', method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
